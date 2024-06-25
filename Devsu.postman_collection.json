@@ -1,0 +1,479 @@
+{
+	"info": {
+		"_postman_id": "0525b456-883b-4e52-a5df-871142f1187b",
+		"name": "Devsu",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13100588"
+	},
+	"item": [
+		{
+			"name": "Clients",
+			"item": [
+				{
+					"name": "Create Client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Jose Lema\",\r\n    \"gender\": \"MALE\",\r\n    \"age\": 35,\r\n    \"identification\": \"10876787\",\r\n    \"address\": \"Otavalo sn y principal\",\r\n    \"phone\": \"098254785\",\r\n    \"password\": 1234,\r\n    \"status\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway-url}}/api/client",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"api",
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Client",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Jose Lema\",\r\n    \"gender\": \"MALE\",\r\n    \"age\": 35,\r\n    \"identification\": \"111222\",\r\n    \"address\": \"Calle 14 # 3-23\",\r\n    \"phone\": \"123123\",\r\n    \"password\": 1234,\r\n    \"status\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway-url}}/api/client/1",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"api",
+								"client",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete client",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{gateway-url}}/api/client/1",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"api",
+								"client",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find all clients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway-url}}/api/client",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"api",
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find client by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway-url}}/api/client/1",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"api",
+								"client",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Accounts",
+			"item": [
+				{
+					"name": "Create account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"number\": \"123456\",\r\n    \"accountType\": \"SAVINGS\",\r\n    \"initialBalance\": 3000000,\r\n    \"status\": true,\r\n    \"clientId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway-url}}/api/account",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"api",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update account",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"number\": \"123456\",\r\n    \"accountType\": \"CHECKING\",\r\n    \"initialBalance\": 6000000,\r\n    \"status\": true,\r\n    \"clientId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway-url}}/api/account/1",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"api",
+								"account",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find all accounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway-url}}/api/account",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"api",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete account",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{gateway-url}}/api/account/1",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"api",
+								"account",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movements",
+			"item": [
+				{
+					"name": "Create movement",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2024-01-13\",\r\n    \"movementType\": \"WITHDRAWAL\",\r\n    \"value\": -4000,\r\n    \"accountId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway-url}}/api/movement",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"api",
+								"movement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update movement",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2024-01-13\",\r\n    \"movementType\": \"DEPOSIT\",\r\n    \"value\": 4000,\r\n    \"accountId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway-url}}/api/movement/1",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"api",
+								"movement",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find all movements",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway-url}}/api/movement",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"api",
+								"movement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete movements",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{gateway-url}}/api/movement/1",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"api",
+								"movement",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Complete flow",
+			"item": [
+				{
+					"name": "Add client list",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"name\": \"Jose Lema\",\r\n        \"gender\": \"MALE\",\r\n        \"age\": 35,\r\n        \"identification\": \"10876787\",\r\n        \"address\": \"Otavalo sn y principal\",\r\n        \"phone\": \"098254785\",\r\n        \"password\": 1234,\r\n        \"status\": true\r\n    },\r\n    {\r\n        \"name\": \"Marianela Montalvo\",\r\n        \"gender\": \"FEMALE\",\r\n        \"age\": 23,\r\n        \"identification\": \"107656743\",\r\n        \"address\": \"Amazonas y NNUU\",\r\n        \"phone\": \"097548965\",\r\n        \"password\": 5678,\r\n        \"status\": true\r\n    },\r\n    {\r\n        \"name\": \"Juan Osorio\",\r\n        \"gender\": \"MALE\",\r\n        \"age\": 45,\r\n        \"identification\": \"107621123\",\r\n        \"address\": \"13 junio y Equinoccial\",\r\n        \"phone\": \"098874587\",\r\n        \"password\": 1245,\r\n        \"status\": true\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway-url}}/api/client/save-list",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"api",
+								"client",
+								"save-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add accounts",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"number\": \"478758\",\r\n        \"accountType\": \"SAVINGS\",\r\n        \"initialBalance\": 2000,\r\n        \"status\": true,\r\n        \"clientId\": 1\r\n    },\r\n    {\r\n        \"number\": \"225487\",\r\n        \"accountType\": \"CHECKING\",\r\n        \"initialBalance\": 100,\r\n        \"status\": true,\r\n        \"clientId\": 2\r\n    },\r\n    {\r\n        \"number\": \"495878\",\r\n        \"accountType\": \"SAVINGS\",\r\n        \"initialBalance\": 0,\r\n        \"status\": true,\r\n        \"clientId\": 3\r\n    },\r\n    {\r\n        \"number\": \"496825\",\r\n        \"accountType\": \"SAVINGS\",\r\n        \"initialBalance\": 540,\r\n        \"status\": true,\r\n        \"clientId\": 2\r\n    },\r\n    {\r\n        \"number\": \"585545\",\r\n        \"accountType\": \"CHECKING\",\r\n        \"initialBalance\": 1000,\r\n        \"status\": true,\r\n        \"clientId\": 1\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway-url}}/api/account/save-list",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"api",
+								"account",
+								"save-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add movements",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"date\": \"2023-12-10\",\r\n        \"movementType\": \"WITHDRAWAL\",\r\n        \"value\": -575,\r\n        \"accountId\": 1\r\n    },\r\n    {\r\n        \"date\": \"2023-12-24\",\r\n        \"movementType\": \"DEPOSIT\",\r\n        \"value\": 600,\r\n        \"accountId\": 2\r\n    },\r\n    {\r\n        \"date\": \"2024-01-02\",\r\n        \"movementType\": \"DEPOSIT\",\r\n        \"value\": 150,\r\n        \"accountId\": 3\r\n    },\r\n    {\r\n        \"date\": \"2024-01-10\",\r\n        \"movementType\": \"WITHDRAWAL\",\r\n        \"value\": -540,\r\n        \"accountId\": 4\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway-url}}/api/movement/save-list",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"api",
+								"movement",
+								"save-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Status Report",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{gateway-url}}/api/account/report?initialDate=2023-12-01&endDate=2024-01-10&clientId=1",
+							"host": [
+								"{{gateway-url}}"
+							],
+							"path": [
+								"api",
+								"account",
+								"report"
+							],
+							"query": [
+								{
+									"key": "initialDate",
+									"value": "2023-12-01"
+								},
+								{
+									"key": "endDate",
+									"value": "2024-01-10"
+								},
+								{
+									"key": "clientId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "gateway-url",
+			"value": "localhost:8222",
+			"type": "string"
+		}
+	]
+}

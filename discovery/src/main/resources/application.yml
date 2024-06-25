@@ -1,3 +1,12 @@
+spring:
+  application:
+    name: discovery
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
 eureka:
   instance:
     hostname: localhost
