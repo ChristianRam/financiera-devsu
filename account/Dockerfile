@@ -1,3 +1,10 @@
+FROM maven:3.8.5-openjdk-17 AS build
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
+
 FROM openjdk:17-jdk-alpine
-COPY target/account-0.0.1-SNAPSHOT.jar account-app.jar
-ENTRYPOINT ["java","-jar","account-app.jar"]
+WORKDIR /app
+COPY --from=build /app/target/*.jar ./account-app.jar
+ENTRYPOINT ["java", "-jar", "account-app.jar"]

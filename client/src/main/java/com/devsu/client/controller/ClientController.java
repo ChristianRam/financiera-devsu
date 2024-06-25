@@ -3,6 +3,7 @@ package com.devsu.client.controller;
 import com.devsu.client.model.dto.ClientDto;
 import com.devsu.client.service.ClientService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,15 +14,12 @@ import java.util.Optional;
 /**
  * Controller for client request
  */
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/client")
 public class ClientController {
 
     private final ClientService service;
-
-    public ClientController(ClientService service) {
-        this.service = service;
-    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -52,8 +50,8 @@ public class ClientController {
         return ResponseEntity.ok(service.findAllClients());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Optional<ClientDto>> findClientById(@PathVariable Long id) {
-        return ResponseEntity.ok(service.findClientById(id));
+    @GetMapping("/{identification}")
+    public ResponseEntity<Optional<ClientDto>> findClientByIdentification(@PathVariable String identification) {
+        return ResponseEntity.ok(service.findClientByIdentification(identification));
     }
 }

@@ -6,8 +6,7 @@ import com.devsu.client.model.Client;
 import com.devsu.client.model.dto.ClientDto;
 import com.devsu.client.repository.ClienteRepository;
 import com.devsu.client.service.ClientService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,9 +16,8 @@ import java.util.Optional;
  * Client with all client operations
  */
 @Service
+@Slf4j
 public class ClientServiceImpl implements ClientService {
-
-    private static final Logger log = LoggerFactory.getLogger(ClientServiceImpl.class);
 
     private static final String NOT_FOUND_EXCEPTION_MESSAGE = "Client with ID %s not found";
     private final ClienteRepository repository;
@@ -76,6 +74,14 @@ public class ClientServiceImpl implements ClientService {
      */
     public Optional<ClientDto> findClientById(Long id) {
         return repository.findById(id).map(mapper::toDto);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Optional<ClientDto> findClientByIdentification(String identification) {
+        return repository.findByIdentification(identification).map(mapper::toDto);
     }
 
     /**

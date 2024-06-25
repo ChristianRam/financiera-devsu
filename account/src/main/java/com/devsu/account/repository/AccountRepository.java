@@ -7,9 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
+
+    Optional<Account> findByNumber(String number);
 
     @Query(value = "SELECT a.* FROM accounts a" +
             " JOIN movements m on a.account_id = m.account_id" +

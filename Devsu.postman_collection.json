@@ -102,19 +102,19 @@
 					"response": []
 				},
 				{
-					"name": "Find client by id",
+					"name": "Find client by identification",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{gateway-url}}/api/client/1",
+							"raw": "{{gateway-url}}/api/client/10876787",
 							"host": [
 								"{{gateway-url}}"
 							],
 							"path": [
 								"api",
 								"client",
-								"1"
+								"10876787"
 							]
 						}
 					},
@@ -132,7 +132,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"number\": \"123456\",\r\n    \"accountType\": \"SAVINGS\",\r\n    \"initialBalance\": 3000000,\r\n    \"status\": true,\r\n    \"clientId\": 1\r\n}",
+							"raw": "{\r\n    \"number\": \"123456\",\r\n    \"accountType\": \"SAVINGS\",\r\n    \"initialBalance\": 3000000,\r\n    \"status\": true,\r\n    \"clientIdentification\": \"10876787\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -159,7 +159,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"number\": \"123456\",\r\n    \"accountType\": \"CHECKING\",\r\n    \"initialBalance\": 6000000,\r\n    \"status\": true,\r\n    \"clientId\": 1\r\n}",
+							"raw": "{\r\n    \"number\": \"123456\",\r\n    \"accountType\": \"CHECKING\",\r\n    \"initialBalance\": 6000000,\r\n    \"status\": true,\r\n    \"clientIdentification\": \"10876787\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -229,7 +229,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"date\": \"2024-01-13\",\r\n    \"movementType\": \"WITHDRAWAL\",\r\n    \"value\": -4000,\r\n    \"accountId\": 1\r\n}",
+							"raw": "{\r\n    \"date\": \"2024-01-13\",\r\n    \"movementType\": \"WITHDRAWAL\",\r\n    \"value\": -4000,\r\n    \"accountNumber\": \"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -256,7 +256,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"date\": \"2024-01-13\",\r\n    \"movementType\": \"DEPOSIT\",\r\n    \"value\": 4000,\r\n    \"accountId\": 1\r\n}",
+							"raw": "{\r\n    \"date\": \"2024-01-13\",\r\n    \"movementType\": \"DEPOSIT\",\r\n    \"value\": 4000,\r\n    \"accountNumber\": \"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -354,7 +354,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\r\n    {\r\n        \"number\": \"478758\",\r\n        \"accountType\": \"SAVINGS\",\r\n        \"initialBalance\": 2000,\r\n        \"status\": true,\r\n        \"clientId\": 1\r\n    },\r\n    {\r\n        \"number\": \"225487\",\r\n        \"accountType\": \"CHECKING\",\r\n        \"initialBalance\": 100,\r\n        \"status\": true,\r\n        \"clientId\": 2\r\n    },\r\n    {\r\n        \"number\": \"495878\",\r\n        \"accountType\": \"SAVINGS\",\r\n        \"initialBalance\": 0,\r\n        \"status\": true,\r\n        \"clientId\": 3\r\n    },\r\n    {\r\n        \"number\": \"496825\",\r\n        \"accountType\": \"SAVINGS\",\r\n        \"initialBalance\": 540,\r\n        \"status\": true,\r\n        \"clientId\": 2\r\n    },\r\n    {\r\n        \"number\": \"585545\",\r\n        \"accountType\": \"CHECKING\",\r\n        \"initialBalance\": 1000,\r\n        \"status\": true,\r\n        \"clientId\": 1\r\n    }\r\n]",
+							"raw": "[\r\n    {\r\n        \"number\": \"478758\",\r\n        \"accountType\": \"SAVINGS\",\r\n        \"initialBalance\": 2000,\r\n        \"status\": true,\r\n        \"clientIdentification\": \"10876787\"\r\n    },\r\n    {\r\n        \"number\": \"225487\",\r\n        \"accountType\": \"CHECKING\",\r\n        \"initialBalance\": 100,\r\n        \"status\": true,\r\n        \"clientIdentification\": \"107656743\"\r\n    },\r\n    {\r\n        \"number\": \"495878\",\r\n        \"accountType\": \"SAVINGS\",\r\n        \"initialBalance\": 0,\r\n        \"status\": true,\r\n        \"clientIdentification\": \"107621123\"\r\n    },\r\n    {\r\n        \"number\": \"496825\",\r\n        \"accountType\": \"SAVINGS\",\r\n        \"initialBalance\": 540,\r\n        \"status\": true,\r\n        \"clientIdentification\": \"107656743\"\r\n    },\r\n    {\r\n        \"number\": \"585545\",\r\n        \"accountType\": \"CHECKING\",\r\n        \"initialBalance\": 1000,\r\n        \"status\": true,\r\n        \"clientIdentification\": \"10876787\"\r\n    }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -382,7 +382,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\r\n    {\r\n        \"date\": \"2023-12-10\",\r\n        \"movementType\": \"WITHDRAWAL\",\r\n        \"value\": -575,\r\n        \"accountId\": 1\r\n    },\r\n    {\r\n        \"date\": \"2023-12-24\",\r\n        \"movementType\": \"DEPOSIT\",\r\n        \"value\": 600,\r\n        \"accountId\": 2\r\n    },\r\n    {\r\n        \"date\": \"2024-01-02\",\r\n        \"movementType\": \"DEPOSIT\",\r\n        \"value\": 150,\r\n        \"accountId\": 3\r\n    },\r\n    {\r\n        \"date\": \"2024-01-10\",\r\n        \"movementType\": \"WITHDRAWAL\",\r\n        \"value\": -540,\r\n        \"accountId\": 4\r\n    }\r\n]",
+							"raw": "[\r\n    {\r\n        \"date\": \"2023-12-10\",\r\n        \"movementType\": \"WITHDRAWAL\",\r\n        \"value\": -575,\r\n        \"accountNumber\": \"478758\"\r\n    },\r\n    {\r\n        \"date\": \"2023-12-24\",\r\n        \"movementType\": \"DEPOSIT\",\r\n        \"value\": 600,\r\n        \"accountNumber\": \"225487\"\r\n    },\r\n    {\r\n        \"date\": \"2024-01-02\",\r\n        \"movementType\": \"DEPOSIT\",\r\n        \"value\": 150,\r\n        \"accountNumber\": \"495878\"\r\n    },\r\n    {\r\n        \"date\": \"2024-01-10\",\r\n        \"movementType\": \"WITHDRAWAL\",\r\n        \"value\": -540,\r\n        \"accountNumber\": \"496825\"\r\n    }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -419,7 +419,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{gateway-url}}/api/account/report?initialDate=2023-12-01&endDate=2024-01-10&clientId=1",
+							"raw": "{{gateway-url}}/api/account/report?initialDate=2023-12-01&endDate=2024-01-10&clientIdentification=10876787",
 							"host": [
 								"{{gateway-url}}"
 							],
@@ -438,8 +438,8 @@
 									"value": "2024-01-10"
 								},
 								{
-									"key": "clientId",
-									"value": "1"
+									"key": "clientIdentification",
+									"value": "10876787"
 								}
 							]
 						}

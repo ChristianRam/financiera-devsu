@@ -2,12 +2,14 @@ package com.devsu.account.model;
 
 import jakarta.persistence.*;
 import jakarta.ws.rs.BadRequestException;
+import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
+@Data
 @Entity(name = "accounts")
 public class Account implements Serializable {
 
@@ -35,81 +37,12 @@ public class Account implements Serializable {
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private List<Movement> movements;
 
-    public Account() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public AccountType getAccountType() {
-        return accountType;
-    }
-
-    public void setAccountType(AccountType accountType) {
-        this.accountType = accountType;
-    }
-
-    public BigDecimal getInitialBalance() {
-        return initialBalance;
-    }
-
     public void setInitialBalance(BigDecimal initialBalance) {
         if (initialBalance.compareTo(BigDecimal.ZERO) < 0) {
             throw new BadRequestException("Initial balance cannot be less than 0");
         }
         this.initialBalance = initialBalance;
     }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public Long getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(Long clientId) {
-        this.clientId = clientId;
-    }
-
-    public List<Movement> getMovements() {
-        return movements;
-    }
-
-    public void setMovements(List<Movement> movements) {
-        this.movements = movements;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "Account{" +
-                "id=" + id +
-                ", number='" + number + '\'' +
-                ", accountType=" + accountType +
-                ", initialBalance=" + initialBalance +
-                ", status=" + status +
-                ", clientId=" + clientId +
-                ", movements=" + movements +
-                '}';
-    }
-
     @Serial
     private static final long serialVersionUID = -2142901433411565547L;
 }

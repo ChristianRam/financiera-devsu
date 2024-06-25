@@ -1,6 +1,5 @@
 package com.devsu.account.service.impl;
 
-
 import com.devsu.account.exception.BadRequestException;
 import com.devsu.account.exception.NotFoundException;
 import com.devsu.account.mapper.MovementMapper;
@@ -10,8 +9,7 @@ import com.devsu.account.model.dto.MovementDto;
 import com.devsu.account.repository.MovementRepository;
 import com.devsu.account.service.AccountService;
 import com.devsu.account.service.MovementService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,13 +18,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class MovementServiceImpl implements MovementService {
-
-    private static final Logger log = LoggerFactory.getLogger(MovementServiceImpl.class);
 
     private static final String MOVEMENT_NOT_FOUND_EXCEPTION_MESSAGE = "Movement with ID %s not found";
 
-    private static final String ACCOUNT_NOT_FOUND_EXCEPTION_MESSAGE = "Active account with ID %s not found";
+    private static final String ACCOUNT_NOT_FOUND_EXCEPTION_MESSAGE = "Active account with number %s not found";
 
     private final MovementRepository repository;
 
@@ -46,11 +43,10 @@ public class MovementServiceImpl implements MovementService {
     @Override
     @Transactional
     public void saveMovement(MovementDto movementDto) {
-        log.info("Adding new movement for account with ID: {}", movementDto.getAccountId());
+        log.info("Adding new movement for account with number: {}", movementDto.getAccountNumber());
 
-        AccountDto accountDto = accountService.findAccountById(movementDto.getAccountId()).filter(account -> account.getStatus().equals(true))
-                .orElseThrow(() -> new NotFoundException(String.format(ACCOUNT_NOT_FOUND_EXCEPTION_MESSAGE, movementDto.getAccountId())));
-
+        AccountDto accountDto = findAccountByNumber(movementDto.getAccountNumber());
+        movementDto.setAccountId(accountDto.getId());
         validateMovement(movementDto, accountDto);
 
         BigDecimal initialBalance = accountDto.getInitialBalance();
@@ -82,6 +78,8 @@ public class MovementServiceImpl implements MovementService {
         findMovementById(id)
                 .orElseThrow(() -> new NotFoundException(String.format(MOVEMENT_NOT_FOUND_EXCEPTION_MESSAGE, id)));
 
+        AccountDto accountDto = findAccountByNumber(movementDto.getAccountNumber());
+        movementDto.setAccountId(accountDto.getId());
         movementDto.setId(id);
         repository.save(mapper.toEntity(movementDto));
     }
@@ -133,5 +131,10 @@ public class MovementServiceImpl implements MovementService {
         } else if (MovementType.DEPOSIT.equals(movementType) && movementValue.compareTo(BigDecimal.ZERO) < 0) {
             throw new BadRequestException("The value must be positive to perform a DEPOSIT");
         }
+    }
+
+    private AccountDto findAccountByNumber(String accounNumber) {
+        return accountService.findAccountByNumber(accounNumber).filter(account -> account.getStatus().equals(true))
+                .orElseThrow(() -> new NotFoundException(String.format(ACCOUNT_NOT_FOUND_EXCEPTION_MESSAGE, accounNumber)));
     }
 }

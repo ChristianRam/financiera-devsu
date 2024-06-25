@@ -11,6 +11,7 @@ import org.mapstruct.Named;
 public interface MovementMapper {
 
     @Mapping(source = "account.id", target = "accountId")
+    @Mapping(source = "account.number", target = "accountNumber")
     MovementDto toDto(Movement movement);
 
     @Mapping(source = "accountId", target = "account", qualifiedByName = "mapAccountIdToAccount")

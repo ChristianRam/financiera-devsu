@@ -10,6 +10,6 @@ import java.util.Optional;
 
 @FeignClient(name = "client")
 public interface ClientFeignClient {
-    @GetMapping("/api/client/{id}")
-    ResponseEntity<Optional<ClientDto>> findClientById(@PathVariable Long id);
+    @GetMapping("/api/client/{identification}")
+    ResponseEntity<Optional<ClientDto>> findClientByIdentification(@PathVariable String identification);
 }

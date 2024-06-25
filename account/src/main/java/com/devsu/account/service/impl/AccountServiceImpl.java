@@ -8,8 +8,7 @@ import com.devsu.account.model.dto.ClientDto;
 import com.devsu.account.model.dto.StatusReportDto;
 import com.devsu.account.repository.AccountRepository;
 import com.devsu.account.service.AccountService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -18,12 +17,11 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class AccountServiceImpl implements AccountService {
 
-    private static final Logger log = LoggerFactory.getLogger(AccountServiceImpl.class);
-
     private static final String ACCOUNT_NOT_FOUND_EXCEPTION_MESSAGE = "Account with id %s not found";
-    private static final String CLIENT_NOT_FOUND_EXCEPTION_MESSAGE = "Client with id %s not found";
+    private static final String CLIENT_NOT_FOUND_EXCEPTION_MESSAGE = "Client with identification %s not found";
 
     private final AccountRepository repository;
     private final AccountMapper mapper;
@@ -41,8 +39,9 @@ public class AccountServiceImpl implements AccountService {
      */
     @Override
     public void saveAccount(AccountDto accountDto) {
-        log.info("Adding a new account for client with ID: {}", accountDto.getClientId());
-        findClientById(accountDto.getClientId());
+        log.info("Adding a new account for client with identification: {}", accountDto.getClientIdentification());
+        ClientDto clientDto = findClientByIdentification(accountDto.getClientIdentification());
+        accountDto.setClientId(clientDto.getId());
 
         repository.save(mapper.toEntity(accountDto));
     }
@@ -62,6 +61,12 @@ public class AccountServiceImpl implements AccountService {
         log.info("Updating account for client with id: {}", accountDto.getClientId());
         findAccountById(id)
                 .orElseThrow(() -> new NotFoundException(String.format(ACCOUNT_NOT_FOUND_EXCEPTION_MESSAGE, id)));
+
+        if (Objects.isNull(accountDto.getClientId()) && !Objects.isNull(accountDto.getClientIdentification())) {
+            ClientDto clientDto = findClientByIdentification(accountDto.getClientIdentification());
+            accountDto.setClientId(clientDto.getId());
+        }
+
         accountDto.setId(id);
         repository.save(mapper.toEntity(accountDto));
     }
@@ -89,6 +94,14 @@ public class AccountServiceImpl implements AccountService {
      * {@inheritDoc}
      */
     @Override
+    public Optional<AccountDto> findAccountByNumber(String number) {
+        return repository.findByNumber(number).map(mapper::toDto);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public List<AccountDto> findAllAccounts() {
         return repository.findAll().stream().map(mapper::toDto).toList();
     }
@@ -97,9 +110,9 @@ public class AccountServiceImpl implements AccountService {
      * {@inheritDoc}
      */
     @Override
-    public StatusReportDto generateStatusReport(LocalDate initialDate, LocalDate endDate, Long clientId) {
-        ClientDto clientDto = findClientById(clientId);
-        List<AccountDto> cuentaDtos = repository.findAccountsAndMovementsByClientIdAndDate(clientId, initialDate, endDate)
+    public StatusReportDto generateStatusReport(LocalDate initialDate, LocalDate endDate, String clientIdentification) {
+        ClientDto clientDto = findClientByIdentification(clientIdentification);
+        List<AccountDto> cuentaDtos = repository.findAccountsAndMovementsByClientIdAndDate(clientDto.getId(), initialDate, endDate)
                 .stream().map(mapper::toDto).toList();
 
         StatusReportDto statusReportDto = new StatusReportDto(clientDto.getName(), cuentaDtos);
@@ -107,8 +120,8 @@ public class AccountServiceImpl implements AccountService {
         return statusReportDto;
     }
 
-    private ClientDto findClientById(Long clientId) {
-        return Objects.requireNonNull(client.findClientById(clientId).getBody())
-                .orElseThrow(() -> new NotFoundException(String.format(CLIENT_NOT_FOUND_EXCEPTION_MESSAGE, clientId)));
+    private ClientDto findClientByIdentification(String clientIdentification) {
+        return Objects.requireNonNull(client.findClientByIdentification(clientIdentification).getBody())
+                .orElseThrow(() -> new NotFoundException(String.format(CLIENT_NOT_FOUND_EXCEPTION_MESSAGE, clientIdentification)));
     }
 }

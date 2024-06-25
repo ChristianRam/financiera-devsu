@@ -46,6 +46,14 @@ public interface AccountService {
     Optional<AccountDto> findAccountById(Long id);
 
     /**
+     * Retrieves an account by number if exists, otherwise return an empty optional
+     *
+     * @param number account number
+     * @return account optional
+     */
+    Optional<AccountDto> findAccountByNumber(String number);
+
+    /**
      * Return all accounts
      *
      * @return accounts list
@@ -57,8 +65,8 @@ public interface AccountService {
      *
      * @param initialDate initial date range
      * @param endDate end date range
-     * @param clientId client identifier
+     * @param clientIdentification client identification
      * @return report with information
      */
-    StatusReportDto generateStatusReport(LocalDate initialDate, LocalDate endDate, Long clientId);
+    StatusReportDto generateStatusReport(LocalDate initialDate, LocalDate endDate, String clientIdentification);
 }

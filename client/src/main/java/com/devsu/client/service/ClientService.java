@@ -44,6 +44,14 @@ public interface ClientService {
     Optional<ClientDto> findClientById(Long id);
 
     /**
+     * Retrieve a client by identification if exists, otherwise return an empty optional
+     *
+     * @param identification client identification
+     * @return optional object
+     */
+    Optional<ClientDto> findClientByIdentification(String identification);
+
+    /**
      * Return all clients
      *
      * @return clients list
