@@ -8,7 +8,9 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/ChristianRam/devsu-configuration
+          uri: https://github.com/ChristianRam/financiera-devsu
+          search-paths:
+            - configuration
           clone-on-start: true
 
 management:
